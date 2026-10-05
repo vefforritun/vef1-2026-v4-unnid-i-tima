@@ -1,4 +1,5 @@
 import { questions } from './lib/questions.js';
+import { isCorrect, shuffle } from './lib/quiz.js';
 
 /* TODO importa úr hinum skránum */
 
@@ -56,8 +57,16 @@ function restart() {
   /* TODO sýna upphafsskjá og stöðu */
 }
 
-function initialize() {
+function initialize(a) {
   /* TODO finna öll element, tengja form, sýna upphafsstöðu og upphafsskjá */
+  
+  const result = isCorrect('test', 'Test');
+
+  console.log('result er', result)
+
+  const shuffled = shuffle(questions);
+
+  console.log('stokkaðar spurningar', shuffled)
 }
 
-initialize();
+initialize('test');
