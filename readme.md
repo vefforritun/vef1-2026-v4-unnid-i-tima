@@ -2,10 +2,13 @@
 
 - [x] birta mismunandi skjái
 - [x] lesa úr formi og birta texta
-- [ ] birta lokaskjá og niðurstöður
+- [x] birta lokaskjá og niðurstöður
+- [x] byrja aftur
+- [x] fyllt út spurningu í stað harðkóðaðs HTML efnis (Flokkur—Spurning)
 
 - [ ] kalla í `isCorrect` til að sjá hvort svar var rétt
-- [ ] búa til element á niðurstöðuskjá
-- [ ] fyllt út spurningu í stað harðkóðaðs HTML efnis (Flokkur—Spurning)
 
-- [ ] byrja aftur
+- [ ] meðhöndlun á stöðu
+- [ ] búa til element á niðurstöðuskjá
+- [ ] setja inn niðurstöður
+- [ ] merkja rétt svör VS röng svör

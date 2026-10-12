@@ -1,4 +1,4 @@
-import { el, empty, setText } from './elements.js';
+import { el, empty, setText } from "./elements.js";
 
 /**
  * @typedef {"start" | "question" | "results"} Screen
@@ -8,7 +8,7 @@ import { el, empty, setText } from './elements.js';
  * Allir mögulegir skjáir.
  * @type {Screen[]}
  */
-const SCREENS = ['start', 'question', 'results'];
+const SCREENS = ["start", "question", "results"];
 
 /**
  * Sýnir skjá `name` og felur aðra.
@@ -16,7 +16,21 @@ const SCREENS = ['start', 'question', 'results'];
  * @returns {void}
  */
 export function showScreen(name) {
-  /* TODO útfæra */
+  /*
+  1. .hidden á alla skjái
+  2. staðfesta að `name` sé skjár
+  3. ef skjár, taka .hidden af
+  */
+  for (screen of SCREENS) {
+    const section = document.querySelector(`section.${screen}`);
+    section.classList.add("hidden");
+  }
+
+  const targetScreen = document.querySelector(`section.${name}`);
+
+  if (targetScreen) {
+    targetScreen.classList.remove("hidden");
+  }
 }
 
 /**
@@ -36,7 +50,18 @@ export function renderStats(stats) {
  * @returns {void}
  */
 export function renderQuestion(question, num, total) {
-  /* TODO útfæra */
+  console.log(question, num, total);
+
+  const categoryElement = document.querySelector(".title .category");
+  categoryElement.textContent = question.category;
+
+  const questionElement = document.querySelector(".title .question-text");
+
+  if (questionElement) {
+    questionElement.textContent = question.question;
+  } else {
+    console.error("fann ekki question element");
+  }
 }
 
 /**

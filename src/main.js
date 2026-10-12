@@ -1,10 +1,11 @@
 import { questions } from "./lib/questions.js";
 import { isCorrect, shuffle } from "./lib/quiz.js";
+import { renderQuestion, showScreen } from "./lib/ui.js";
 
 /* TODO importa úr hinum skránum */
 
 /** Fasti sem segir til um hversu margar spurningar við sýnum. */
-const NUMBER_OF_QUESTIONS = 4;
+const NUMBER_OF_QUESTIONS = 5;
 
 /**
  * Staða leiks, heldur utanum tölfræði, spurningar í núverandi leik,
@@ -29,27 +30,22 @@ const state = {
  */
 function start() {
   /* TODO velja spurningar, endursetja stöðu, sýna fyrsta skjá */
+  const shuffled = shuffle(questions);
+  state.questions = shuffled.slice(0, NUMBER_OF_QUESTIONS - 1);
+  state.current = 1;
+  state.answers = [];
+
   const startButton = document.querySelector(".start-button");
 
   if (startButton) {
-    console.log("startButton", startButton.textContent);
-    startButton.textContent = "...Byrja?";
-
     startButton.addEventListener("click", (e) => {
-      // console.log('click event', e)
-      // startButton.textContent = `${startButton.textContent} click! `
+      showScreen("question");
 
-      const startSection = document.querySelector("section.start");
-      // heldur mikil vinna..
-      // const startSectionClass = startSection.getAttribute('class')
-      // startSection.setAttribute('class', startSectionClass + ' hidden')
-
-      startSection.classList.toggle("hidden");
-
-      const questionSection = document.querySelector("section.question");
-      questionSection.classList.remove("hidden");
-
-      console.log("start section", startSection);
+      renderQuestion(
+        state.questions[state.current - 1],
+        state.current - 1,
+        NUMBER_OF_QUESTIONS,
+      );
     });
   } else {
     console.error("fann ekki start button");
@@ -62,16 +58,32 @@ function start() {
  */
 function finish() {
   /* TODO uppfæra stöðu, birta stöðu og sýna seinasta skjá */
+  showScreen("results");
 }
 
 /**
  * Vistar svar við núverandi spurningu og sýnir næstu, eða niðurstöður ef
  * öllum spurningum hefur verið svarað.
- * @param {string} text Svar notanda
  * @returns {void}
  */
-function submitAnswer(text) {
+function submitAnswer(answer) {
   /* TODO skrá stöðu svars, klára ef seinasta spurning, annars sýna næstu */
+
+  console.log(
+    "Svarið notanda er",
+    answer,
+    "rétt svar er",
+    state.questions[state.current - 1].answer,
+  );
+  const correctAnswer = isCorrect(answer, state.questions[state.current - 1].answer)
+
+  if (correctAnswer) {
+    alert('RÉTT!!')
+  } else {
+    alert('Ekki rétt :(')
+  }
+
+  //finish();
 }
 
 /**
@@ -84,27 +96,26 @@ function restart() {
 
 function initialize(a) {
   /* TODO finna öll element, tengja form, sýna upphafsstöðu og upphafsskjá */
-
-  const result = isCorrect("test", "Test");
-
-  console.log("result er", result);
-
-  const shuffled = shuffle(questions);
-
-  console.log("stokkaðar spurningar", shuffled);
-
   start();
 
   const form = document.querySelector("form.answer-form");
-
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("form submitted");
 
     const data = new FormData(form);
     const answer = data.get("answer");
-    console.log("Svarið er", answer);
+
+    submitAnswer(answer);
   });
+
+  const restartButton = document.querySelector("button.restart-button");
+
+  if (restartButton) {
+    restartButton.addEventListener("click", () => {
+      showScreen("start");
+    });
+  }
 }
 
 window.addEventListener("keyup", (e) => {
