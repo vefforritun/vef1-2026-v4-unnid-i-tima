@@ -22,11 +22,11 @@
           <p>Fjöldi réttra svara: <span class="stats-correct">0</span></p>
           <p>Fjöldi rangra svara: <span class="stats-incorrect">0</span></p>
         </div>
-        <button class="start-button">Byrja</button>
+        <button class="start-button">Byrja!</button>
       </section>
 
       <!-- Fjarlægðu hidden til að sjá viðmót -->
-      <section class="question">
+      <section class="question hidden">
         <p class="progress">
           Spurning <span class="current">1</span> af
           <span class="total">4</span>
@@ -40,13 +40,14 @@
           <div class="input-group">
             <label for="answer">Svar:</label>
             <input type="text" name="answer" id="answer" autocomplete="off" />
+            <input type="datetime-local" name="answer2" id="answer" autocomplete="off" />
           </div>
           <button type="submit">Næsta</button>
         </form>
       </section>
 
       <!-- Fjarlægðu hidden til að sjá viðmót -->
-      <section class="results ">
+      <section class="results hidden">
         <h2>Niðurstöður</h2>
         <p class="results-summary">
           Rétt svör: <span class="correct-count">0</span> af
@@ -54,7 +55,7 @@
         </p>
         <ol class="results-list">
           <!-- Niðurstöður bætast við hér með JavaScript, fjarlægðu athugasemd til að sjá dæmi -->
-
+          <!--
           <li class="result correct">
             <p class="result-category">Tónlist</p>
             <p class="result-question">
@@ -71,6 +72,7 @@
           </li>
 
         </ol>
+        -->
         <button class="restart-button">Spila aftur</button>
       </section>
     </main>
