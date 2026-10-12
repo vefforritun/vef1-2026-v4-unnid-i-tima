@@ -6,7 +6,7 @@
 - [x] byrja aftur
 - [x] fyllt út spurningu í stað harðkóðaðs HTML efnis (Flokkur—Spurning)
 
-- [ ] kalla í `isCorrect` til að sjá hvort svar var rétt
+- [x] kalla í `isCorrect` til að sjá hvort svar var rétt
 
 - [ ] meðhöndlun á stöðu
 - [ ] búa til element á niðurstöðuskjá
