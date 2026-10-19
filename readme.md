@@ -7,8 +7,10 @@
 - [x] fyllt út spurningu í stað harðkóðaðs HTML efnis (Flokkur—Spurning)
 - [x] kalla í `isCorrect` til að sjá hvort svar var rétt
 - [x] jsdoc og vscode, birta mögulegar villur
+- [x] meðhöndlun á stöðu
 
-- [ ] meðhöndlun á stöðu
+- [ ] uppfæra „spurning 1 af 4“ til að telja rétt
+- [ ] laga villu þegar búin að spyrja allra spurninga sem tengist inn í 👇
 - [ ] fara úr spurninga „ham“ í niðurstöður
 - [ ] búa til element á niðurstöðuskjá
 - [ ] setja inn niðurstöður út frá svörum

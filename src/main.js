@@ -5,7 +5,7 @@ import { renderQuestion, showScreen } from "./lib/ui.js";
 /* TODO importa úr hinum skránum */
 
 /** Fasti sem segir til um hversu margar spurningar við sýnum. */
-const NUMBER_OF_QUESTIONS = 5;
+const NUMBER_OF_QUESTIONS = 4;
 
 /**
  * Staða leiks, heldur utanum tölfræði, spurningar í núverandi leik,
@@ -70,6 +70,24 @@ function finish() {
 function submitAnswer(answer) {
   /* TODO skrá stöðu svars, klára ef seinasta spurning, annars sýna næstu */
 
+  state.answers.push(answer);
+
+  const nextQuestionNum = state.current + 1;
+
+  if (nextQuestionNum > NUMBER_OF_QUESTIONS) {
+    finish();
+  } else {
+    state.current = nextQuestionNum;
+    renderQuestion(
+      state.questions[state.current - 1],
+      state.current - 1,
+      NUMBER_OF_QUESTIONS,
+    );
+  }
+
+  // TODO klára ef seinasta spurning
+
+  /*
   console.log(
     "Svarið notanda er",
     answer,
@@ -83,6 +101,7 @@ function submitAnswer(answer) {
   } else {
     alert('Ekki rétt :(')
   }
+  */
 
   //finish();
 }
@@ -102,7 +121,7 @@ function initialize() {
   const form = document.querySelector("form");
 
   if (!form) {
-    console.error('form not found');
+    console.error("form not found");
     return;
   }
 
@@ -111,14 +130,17 @@ function initialize() {
     console.log("form submitted");
 
     const data = new FormData(form);
-    const answer = data.get("answerx");
+    const answer = data.get("answer");
 
-    if (typeof answer !== 'string') {
-      console.warn('answer is not a string')
+    if (typeof answer !== "string") {
+      console.warn("answer is not a string");
       return;
     }
 
     submitAnswer(answer);
+    const input = form.querySelector('input');
+    form.reset();
+    input?.focus();
   });
 
   const restartButton = document.querySelector("button.restart-button");
