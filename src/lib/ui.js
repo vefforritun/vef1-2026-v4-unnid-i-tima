@@ -21,8 +21,14 @@ export function showScreen(name) {
   2. staðfesta að `name` sé skjár
   3. ef skjár, taka .hidden af
   */
-  for (screen of SCREENS) {
+  for (const screen of SCREENS) {
     const section = document.querySelector(`section.${screen}`);
+
+    if (!section) {
+      console.warn('section is null')
+      continue;
+    }
+
     section.classList.add("hidden");
   }
 
@@ -53,6 +59,12 @@ export function renderQuestion(question, num, total) {
   console.log(question, num, total);
 
   const categoryElement = document.querySelector(".title .category");
+
+  if (!categoryElement) {
+    console.warn('category element not found');
+    return;
+  }
+
   categoryElement.textContent = question.category;
 
   const questionElement = document.querySelector(".title .question-text");

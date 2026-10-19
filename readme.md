@@ -5,10 +5,11 @@
 - [x] birta lokaskjá og niðurstöður
 - [x] byrja aftur
 - [x] fyllt út spurningu í stað harðkóðaðs HTML efnis (Flokkur—Spurning)
-
 - [x] kalla í `isCorrect` til að sjá hvort svar var rétt
+- [x] jsdoc og vscode, birta mögulegar villur
 
 - [ ] meðhöndlun á stöðu
+- [ ] fara úr spurninga „ham“ í niðurstöður
 - [ ] búa til element á niðurstöðuskjá
-- [ ] setja inn niðurstöður
-- [ ] merkja rétt svör VS röng svör
+- [ ] setja inn niðurstöður út frá svörum
+- [ ] merkja rétt svör VS röng svör á niðurstöðuskjá

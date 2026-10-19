@@ -64,6 +64,7 @@ function finish() {
 /**
  * Vistar svar við núverandi spurningu og sýnir næstu, eða niðurstöður ef
  * öllum spurningum hefur verið svarað.
+ * @param answer {string}
  * @returns {void}
  */
 function submitAnswer(answer) {
@@ -94,17 +95,28 @@ function restart() {
   /* TODO sýna upphafsskjá og stöðu */
 }
 
-function initialize(a) {
+function initialize() {
   /* TODO finna öll element, tengja form, sýna upphafsstöðu og upphafsskjá */
   start();
 
-  const form = document.querySelector("form.answer-form");
+  const form = document.querySelector("form");
+
+  if (!form) {
+    console.error('form not found');
+    return;
+  }
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("form submitted");
 
     const data = new FormData(form);
-    const answer = data.get("answer");
+    const answer = data.get("answerx");
+
+    if (typeof answer !== 'string') {
+      console.warn('answer is not a string')
+      return;
+    }
 
     submitAnswer(answer);
   });
@@ -122,4 +134,4 @@ window.addEventListener("keyup", (e) => {
   //console.log('ytt á lykil á lyklaborði', e)
 });
 
-initialize("test");
+initialize();
